@@ -1,0 +1,12 @@
+../../../external/corert/src/System.Private.CoreLib/src/System/Environment.Windows.cs
+
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.Threading.cs
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.GetLastError.cs
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.Threading.cs
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.GetCurrentThreadId.cs
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.GetTickCount64.cs
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.GetCurrentProcessorNumber.cs
+
+../../../external/corert/src/System.Private.CoreLib/src/Internal/Runtime/Augments/RuntimeThread.Windows.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitHandle.Windows.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/EventWaitHandle.Windows.cs
