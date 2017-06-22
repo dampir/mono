@@ -163,6 +163,77 @@ namespace System.Runtime.InteropServices
 				DangerousReleaseInternal (true);
 		}
 
+		// Do not call this directly - only call through the extension method SafeHandleExtensions.DangerousAddRef.
+		internal void DangerousAddRef_WithNoNullCheck()
+		{
+			// To prevent handle recycling security attacks we must enforce the
+			// following invariant: we cannot successfully AddRef a handle on which
+			// we've committed to the process of releasing.
+
+			// We ensure this by never AddRef'ing a handle that is marked closed and
+			// never marking a handle as closed while the ref count is non-zero. For
+			// this to be thread safe we must perform inspection/updates of the two
+			// values as a single atomic operation. We achieve this by storing them both
+			// in a single aligned DWORD and modifying the entire state via interlocked
+			// compare exchange operations.
+
+			// Additionally we have to deal with the problem of the Dispose operation.
+			// We must assume that this operation is directly exposed to untrusted
+			// callers and that malicious callers will try and use what is basically a
+			// Release call to decrement the ref count to zero and free the handle while
+			// it's still in use (the other way a handle recycling attack can be
+			// mounted). We combat this by allowing only one Dispose to operate against
+			// a given safe handle (which balances the creation operation given that
+			// Dispose suppresses finalization). We record the fact that a Dispose has
+			// been requested in the same state field as the ref count and closed state.
+
+			// So the state field ends up looking like this:
+			//
+			//  31                                                        2  1   0
+			// +-----------------------------------------------------------+---+---+
+			// |                           Ref count                       | D | C |
+			// +-----------------------------------------------------------+---+---+
+			// 
+			// Where D = 1 means a Dispose has been performed and C = 1 means the
+			// underlying handle has (or will be shortly) released.
+
+
+			// Might have to perform the following steps multiple times due to
+			// interference from other AddRef's and Release's.
+			int oldState, newState;
+			do
+			{
+				// First step is to read the current handle state. We use this as a
+				// basis to decide whether an AddRef is legal and, if so, to propose an
+				// update predicated on the initial state (a conditional write).
+				oldState = _state;
+
+				// Check for closed state.
+				if ((oldState & StateBits.Closed) != 0)
+				{
+					throw new ObjectDisposedException("SafeHandle");
+				}
+
+				// Not closed, let's propose an update (to the ref count, just add
+				// StateBits.RefCountOne to the state to effectively add 1 to the ref count).
+				// Continue doing this until the update succeeds (because nobody
+				// modifies the state field between the read and write operations) or
+				// the state moves to closed.
+				newState = oldState + StateBits.RefCountOne;
+			} while (Interlocked.CompareExchange(ref _state, newState, oldState) != oldState);
+			// If we got here we managed to update the ref count while the state
+			// remained non closed. So we're done.
+		}
+
+		// Bitmasks for the _state field above.
+		private static class StateBits
+		{
+			public const int Closed = 0x00000001;
+			public const int Disposed = 0x00000002;
+			public const int RefCount = unchecked((int)0xfffffffc);
+			public const int RefCountOne = 4;       // Amount to increment state field to yield a ref count increment of 1
+		};
+
 		void DangerousReleaseInternal (bool dispose)
 		{
 			try {}

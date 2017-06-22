@@ -843,7 +843,6 @@ System.Threading/Thread.cs
 System.Threading/Timer.cs
 System.Threading/TimerCallback.cs
 System.Threading/Volatile.cs
-System.Threading/WaitHandle.cs
 
 System.Threading.Tasks/DecoupledTask.cs
 ../Mono.Parallel/Mono.Threading/AtomicBoolean.cs
@@ -1009,7 +1008,6 @@ ReferenceSources/Type.cs
 ../referencesource/mscorlib/system/timeoutexception.cs
 ../referencesource/mscorlib/system/timespan.cs
 ../referencesource/mscorlib/system/threadattributes.cs
-../referencesource/mscorlib/system/threadstaticattribute.cs
 ../referencesource/mscorlib/system/throwhelper.cs
 ../referencesource/mscorlib/system/timezoneinfo.cs
 ../referencesource/mscorlib/system/timezonenotfoundexception.cs
@@ -1552,17 +1550,14 @@ ReferenceSources/AppContextDefaultValues.cs
 ../referencesource/mscorlib/system/threading/abandonedmutexexception.cs
 ../referencesource/mscorlib/system/threading/apartmentstate.cs
 ../referencesource/mscorlib/system/threading/asynclocal.cs
-../referencesource/mscorlib/system/threading/autoresetevent.cs
 ../referencesource/mscorlib/system/threading/CancellationToken.cs
 ../referencesource/mscorlib/system/threading/CancellationTokenRegistration.cs
 ../referencesource/mscorlib/system/threading/CancellationTokenSource.cs
 ../referencesource/mscorlib/system/threading/CountdownEvent.cs
 ../referencesource/mscorlib/system/threading/eventresetmode.cs
-../referencesource/mscorlib/system/threading/eventwaithandle.cs
 ../referencesource/mscorlib/system/threading/executioncontext.cs
 ../referencesource/mscorlib/system/threading/LazyInitializer.cs
 ../referencesource/mscorlib/system/threading/lockrecursionexception.cs
-../referencesource/mscorlib/system/threading/manualresetevent.cs
 ../referencesource/mscorlib/system/threading/ManualResetEventSlim.cs
 ../referencesource/mscorlib/system/threading/monitor.cs
 ../referencesource/mscorlib/system/threading/parameterizedthreadstart.cs
@@ -1579,13 +1574,11 @@ ReferenceSources/AppContextDefaultValues.cs
 ../referencesource/mscorlib/system/threading/ThreadLocal.cs
 ../referencesource/mscorlib/system/threading/threadpriority.cs
 ../referencesource/mscorlib/system/threading/threadstart.cs
-../referencesource/mscorlib/system/threading/threadstartexception.cs
 ../referencesource/mscorlib/system/threading/threadstate.cs
 ../referencesource/mscorlib/system/threading/threadstateexception.cs
 ../referencesource/mscorlib/system/threading/timeout.cs
 ../referencesource/mscorlib/system/threading/waithandlecannotbeopenedexception.cs
 ../referencesource/mscorlib/system/threading/threadpool.cs
-../referencesource/mscorlib/system/threading/waithandle.cs
 ../referencesource/mscorlib/system/threading/waithandleExtensions.cs
 
 ../referencesource/mscorlib/system/threading/Tasks/AsyncCausalityTracer.cs
@@ -1620,10 +1613,14 @@ corert/AddrofIntrinsics.cs
 corert/Debug.cs
 corert/EnvironmentAugments.cs
 corert/RelocatedTypeAttribute.cs
-corert/RuntimeThread.cs
 corert/ThreadPoolBoundHandle.cs
+corert/RuntimeThread.cs
+corert/EventWaitHandle.cs
+corert/WaitHandle.cs
 
 ../../../external/corert/src/Common/src/Interop/Unix/Interop.Libraries.cs
+../../../external/corert/src/System.Private.CoreLib/shared/Interop/Windows/Interop.Libraries.cs
+../../../external/corert/src/Common/src/Interop/Windows/Interop.Libraries.cs
 
 ../../../external/corert/src/Common/src/System/Numerics/Hashing/HashHelpers.cs
 
@@ -1657,6 +1654,53 @@ corert/ThreadPoolBoundHandle.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Collections/Generic/IDictionaryDebugView.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Collections/Generic/Dictionary.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Collections/Generic/NonRandomizedStringEqualityComparer.cs
+
+
+../../../external/corert/src/System.Private.CoreLib/src/System/Runtime/RuntimeImports.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Runtime/RuntimeImportAttribute.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Runtime/CompilerServices/InitializedDataAttributes.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Runtime/CompilerServices/InternalCompilerAttributes.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Runtime/CompilerServices/EagerStaticClassConstructionAttribute.cs
+
+../../../external/corert/src/System.Private.CoreLib/src/Interop/Interop.manual.cs
+
+../../../external/corert/src/System.Private.CoreLib/shared/Interop/Windows/Interop.Errors.cs
+../../../external/corert/src/System.Private.CoreLib/shared/System/ThreadStaticAttribute.cs
+../../../external/corert/src/System.Private.CoreLib/shared/System/Threading/ThreadStartException.cs
+
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.GetLastError.cs
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.GetCurrentThreadId.cs
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.GetTickCount64.cs
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.GetCurrentProcessorNumber.cs
+../../../external/corert/src/Common/src/Interop/Windows/mincore/Interop.Threading.cs
+
+../../../external/corert/src/Common/src/Interop/Unix/System.Private.CoreLib.Native/Interop.GetTickCount64.cs
+../../../external/corert/src/Common/src/Interop/Unix/System.Private.CoreLib.Native/Interop.SchedGetCpu.cs
+../../../external/corert/src/Common/src/Interop/Unix/System.Private.CoreLib.Native/Interop.Threading.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Environment.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Runtime/InteropServices/SafeHandleExtensions.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/Lock.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/LockHolder.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/ManagedThreadId.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitHandleArray.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/LowLevelLock.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/FirstLevelSpinWaiter.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/LowLevelMonitor.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitSubsystem.HandleManager.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitSubsystem.ThreadWaitInfo.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitSubsystem.WaitableObject.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitSubsystem.Unix.cs  
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitHandle.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitHandle.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitHandle.Windows.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/EventWaitHandle.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/EventWaitHandle.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/EventWaitHandle.Windows.cs
+../../../external/corert/src/System.Private.CoreLib/shared/System/Threading/ManualResetEvent.cs
+../../../external/corert/src/System.Private.CoreLib/shared/System/Threading/AutoResetEvent.cs
+../../../external/corert/src/System.Private.CoreLib/src/Internal/Runtime/Augments/RuntimeThread.cs
+../../../external/corert/src/System.Private.CoreLib/src/Internal/Runtime/Augments/RuntimeThread.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/Internal/Runtime/Augments/RuntimeThread.Windows.cs
 
 corefx/SR.cs
 
