@@ -230,7 +230,6 @@ System.Security.AccessControl/DirectorySecurityTest.cs
 System.Security.AccessControl/DiscretionaryAclTest.cs
 System.Security.AccessControl/FileSecurityTest.cs
 System.Security.AccessControl/MutexAccessRuleTest.cs
-System.Security.AccessControl/MutexSecurityTest.cs
 System.Security.AccessControl/ObjectAceTest.cs
 System.Security.AccessControl/ObjectSecurityTest.cs
 System.Security.AccessControl/ObjectSecurity_TTest.cs

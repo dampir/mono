@@ -833,7 +833,6 @@ System.Threading/Interlocked.cs
 System.Threading/LockCookie.cs
 System.Threading/LockQueue.cs
 System.Threading/Monitor.cs
-System.Threading/Mutex.cs
 System.Threading/NativeEventCalls.cs
 System.Threading/NativeOverlapped.cs
 System.Threading/Overlapped.cs
@@ -1547,7 +1546,6 @@ ReferenceSources/AppContextDefaultValues.cs
 ../referencesource/mscorlib/system/runtime/versioning/targetframeworkattribute.cs
 ../referencesource/mscorlib/system/runtime/versioning/targetframeworkid.cs
 
-../referencesource/mscorlib/system/threading/abandonedmutexexception.cs
 ../referencesource/mscorlib/system/threading/apartmentstate.cs
 ../referencesource/mscorlib/system/threading/asynclocal.cs
 ../referencesource/mscorlib/system/threading/CancellationToken.cs
@@ -1617,6 +1615,7 @@ corert/ThreadPoolBoundHandle.cs
 corert/RuntimeThread.cs
 corert/EventWaitHandle.cs
 corert/WaitHandle.cs
+corert/Mutex.cs
 
 ../../../external/corert/src/Common/src/Interop/Unix/Interop.Libraries.cs
 ../../../external/corert/src/System.Private.CoreLib/shared/Interop/Windows/Interop.Libraries.cs
@@ -1689,13 +1688,17 @@ corert/WaitHandle.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitSubsystem.HandleManager.Unix.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitSubsystem.ThreadWaitInfo.Unix.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitSubsystem.WaitableObject.Unix.cs
-../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitSubsystem.Unix.cs  
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitSubsystem.Unix.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitHandle.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitHandle.Unix.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Threading/WaitHandle.Windows.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Threading/EventWaitHandle.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Threading/EventWaitHandle.Unix.cs
 ../../../external/corert/src/System.Private.CoreLib/src/System/Threading/EventWaitHandle.Windows.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/Mutex.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/Mutex.Unix.cs
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/Mutex.Windows.cs
+../../../external/corert/src/System.Private.CoreLib/shared/System/Threading/AbandonedMutexException.cs
 ../../../external/corert/src/System.Private.CoreLib/shared/System/Threading/ManualResetEvent.cs
 ../../../external/corert/src/System.Private.CoreLib/shared/System/Threading/AutoResetEvent.cs
 ../../../external/corert/src/System.Private.CoreLib/src/Internal/Runtime/Augments/RuntimeThread.cs
