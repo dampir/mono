@@ -1621,9 +1621,8 @@ corert/Debug.cs
 corert/EnvironmentAugments.cs
 corert/RelocatedTypeAttribute.cs
 corert/RuntimeThread.cs
+corert/Interop.cs
 corert/ThreadPoolBoundHandle.cs
-
-../../../external/corert/src/Common/src/Interop/Unix/Interop.Libraries.cs
 
 ../../../external/corert/src/Common/src/System/Numerics/Hashing/HashHelpers.cs
 
