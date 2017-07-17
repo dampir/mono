@@ -20,65 +20,7 @@ namespace System {
     using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Diagnostics.Contracts;
-
-    // This class is an encapsulation of a slot so that it is managed in a secure fashion.
-    // It is constructed by the LocalDataStoreManager, holds the slot and the manager
-    // and cleans up when it is finalized.
-    // This class will not be marked serializable
-[System.Runtime.InteropServices.ComVisible(true)]
-    public sealed class LocalDataStoreSlot
-    {
-        private LocalDataStoreMgr m_mgr;
-        private int m_slot;
-        private long m_cookie;
-
-        // Construct the object to encapsulate the slot.
-        internal LocalDataStoreSlot(LocalDataStoreMgr mgr, int slot, long cookie)
-        {
-            m_mgr = mgr;
-            m_slot = slot;
-            m_cookie = cookie;
-        }
-
-        // Accessors for the two fields of this class.
-        internal LocalDataStoreMgr Manager
-        {
-            get
-            {
-                return m_mgr;
-            }
-        }
-        internal int Slot
-        {
-            get
-            {
-                return m_slot;
-            }
-        }
-        internal long Cookie
-        {
-            get
-            {
-                return m_cookie;
-        }
-        }
-
-        // Release the slot reserved by this object when this object goes away.
-        ~LocalDataStoreSlot()
-        {
-            LocalDataStoreMgr mgr = m_mgr;
-            if (mgr == null)
-                return;
-
-            int slot = m_slot;
-
-                // Mark the slot as free.
-                m_slot = -1;
-
-            mgr.FreeDataSlot(slot, m_cookie);
-        }
-    }
-
+    
     // This class will not be marked serializable
     sealed internal class LocalDataStoreMgr
     {

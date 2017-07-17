@@ -210,10 +210,6 @@ public class AsyncResult : IAsyncResult, IMessageSink, IThreadPoolWorkItem {
 		Invoke ();
 	}
 
-	void IThreadPoolWorkItem.MarkAborted(ThreadAbortException tae)
-	{
-	}
-
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	internal extern object Invoke ();
 }

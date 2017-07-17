@@ -801,4 +801,17 @@ partial class SR
 	public const string PartitionerStatic_CanNotCallGetEnumeratorAfterSourceHasBeenDisposed = "Can not call GetEnumerator on partitions after the source enumerable is disposed";
 	public const string PartitionerStatic_CurrentCalledBeforeMoveNext = "MoveNext must be called at least once before calling Current.";
 	public const string ConcurrentBag_Enumerator_EnumerationNotStartedOrAlreadyFinished = "Enumeration has either not started or has already finished.";
+	public const string ArgumentOutOfRange_NeedNonnegativeNumber = "Nonnegative number required.";
+	public const string Thread_Operation_RequiresCurrentThread = "This operation must be performed on the same thread as that represented by the Thread instance.";
+	public const string PlatformNotSupported_ThreadAbort = "Thread abort is not supported on this platform.";
+	public const string PlatformNotSupported_ThreadSuspend = "Thread suspend is not supported on this platform.";
+	public const string ArgumentOutOfRange_TimeoutMilliseconds = "Timeout value in milliseconds must be nonnegative and less than or equal to Int32.MaxValue, or -1 for an infinite timeout.";
+	public const string Thread_GetSetCompressedStack_NotSupported = "Use CompressedStack.(Capture/Run) instead.";
+	public const string PlatformNotSupported_COMInterop = "COM interop is not supported on this platform.";
+	public const string Thread_ApartmentState_ChangeFailed = "Failed to set the specified COM apartment state.";
+	public const string ReaderWriterLock_Timeout = "The operation has timed out. {0}";
+	public const string ReaderWriterLock_RestoreLockWithOwnedLocks = "ReaderWriterLock.RestoreLock was called without releasing all locks acquired since the call to ReleaseLock.";
+	public const string ReaderWriterLock_NotOwner = "Attempt to release a lock that is not owned by the calling thread. {0}";	
+	public const string ReaderWriterLock_InvalidLockCookie = "The specified lock cookie is invalid for this operation. {0}";
+	public const string ExceptionFromHResult = "(Exception from HRESULT: 0x{0:X})";
 }

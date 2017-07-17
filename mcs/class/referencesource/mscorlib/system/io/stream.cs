@@ -696,6 +696,8 @@ namespace System.IO {
                     using(context) ExecutionContext.Run(context, invokeAsyncCallback, this, true);
                 }
             }
+
+			bool ITaskCompletionAction.InvokeMayRunArbitraryCode { get { return true; } }
         }
 #endif
 
