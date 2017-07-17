@@ -826,8 +826,8 @@ mono_thread_detach_internal (MonoInternalThread *thread)
 		mono_domain_unset ();
 		mono_memory_barrier ();
 
-		if (mono_thread_cleanup_fn2)
-			mono_thread_cleanup_fn2 ();
+		// if (mono_thread_cleanup_fn2)
+		// 	mono_thread_cleanup_fn2 ();
 		if (mono_thread_cleanup_fn)
 			mono_thread_cleanup_fn (thread_get_tid (thread));
 
@@ -862,8 +862,8 @@ mono_thread_detach_internal (MonoInternalThread *thread)
 	g_free (thread->suspended);
 	thread->suspended = NULL;
 
-	if (mono_thread_cleanup_fn2)
-	 	mono_thread_cleanup_fn2 ();
+	// if (mono_thread_cleanup_fn2)
+	//  	mono_thread_cleanup_fn2 ();
 	if (mono_thread_cleanup_fn)
 		mono_thread_cleanup_fn (thread_get_tid (thread));
 
