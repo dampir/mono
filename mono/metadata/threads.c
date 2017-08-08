@@ -166,6 +166,8 @@ static MonoThreadAttachCB mono_thread_attach_cb = NULL;
 /* function called at thread cleanup */
 static MonoThreadCleanupFunc mono_thread_cleanup_fn = NULL;
 
+static MonoThreadCleanupFunc2 mono_thread_cleanup_fn2 = NULL;
+
 /* The default stack size for each thread */
 static guint32 default_stacksize = 0;
 #define default_stacksize_for_thread(thread) ((thread)->stack_size? (thread)->stack_size: default_stacksize)
@@ -824,6 +826,8 @@ mono_thread_detach_internal (MonoInternalThread *thread)
 		mono_domain_unset ();
 		mono_memory_barrier ();
 
+		if (mono_thread_cleanup_fn2)
+			mono_thread_cleanup_fn2 ();
 		if (mono_thread_cleanup_fn)
 			mono_thread_cleanup_fn (thread_get_tid (thread));
 
@@ -858,6 +862,8 @@ mono_thread_detach_internal (MonoInternalThread *thread)
 	g_free (thread->suspended);
 	thread->suspended = NULL;
 
+	if (mono_thread_cleanup_fn2)
+	 	mono_thread_cleanup_fn2 ();
 	if (mono_thread_cleanup_fn)
 		mono_thread_cleanup_fn (thread_get_tid (thread));
 
@@ -5247,3 +5253,22 @@ mono_thread_internal_is_current (MonoInternalThread *internal)
 	g_assert (internal);
 	return mono_native_thread_id_equals (mono_native_thread_id_get (), MONO_UINT_TO_NATIVE_THREAD_ID (internal->tid));
 }
+
+MonoBoolean
+ves_icall_System_Runtime_RuntimeImports_SetThreadExitCallback (gpointer func)
+{
+	mono_thread_cleanup_fn2 = (MonoThreadCleanupFunc2)func;
+	return TRUE;
+}
+
+void 
+ves_icall_System_Runtime_RuntimeImports_SpinWait (int iterations)
+{
+}
+
+gboolean 
+ves_icall_System_Runtime_RuntimeImports_Yield (void)
+{
+	return mono_thread_info_yield ();
+}
+

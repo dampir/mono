@@ -1,3 +1,4 @@
+
 /**
  * \file
  * This file contains the default set of the mono internal calls.
@@ -758,6 +759,13 @@ HANDLES(ICALL(REMSER_0, "GetVirtualMethod", ves_icall_Remoting_RemotingServices_
 ICALL(REMSER_1, "InternalExecute", ves_icall_InternalExecute)
 HANDLES(ICALL(REMSER_2, "IsTransparentProxy", ves_icall_IsTransparentProxy))
 #endif
+
+ICALL_TYPE(RHI, "System.Runtime.RuntimeImports", RHI_1)
+ICALL(RHI_1, "RhHandleAllocInternal", ves_icall_System_GCHandle_GetTargetHandle)
+ICALL(RHI_2, "RhHandleGet", ves_icall_System_GCHandle_GetTarget)
+ICALL(RHI_3, "RhSetThreadExitCallback", ves_icall_System_Runtime_RuntimeImports_SetThreadExitCallback)
+ICALL(RHI_4, "RhSpinWaitInternal", ves_icall_System_Runtime_RuntimeImports_SpinWait)
+ICALL(RHI_5, "RhYieldInternal", ves_icall_System_Runtime_RuntimeImports_Yield)
 
 ICALL_TYPE(RVH, "System.Runtime.Versioning.VersioningHelper", RVH_1)
 ICALL(RVH_1, "GetRuntimeId", ves_icall_System_Runtime_Versioning_VersioningHelper_GetRuntimeId)

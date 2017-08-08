@@ -649,7 +649,6 @@ ReferenceSources/Win32Exception.cs
 ../referencesource/System/net/System/Net/_PooledStream.cs
 ../referencesource/System/net/System/Net/_ProxyChain.cs
 ../referencesource/System/net/System/Net/_ScatterGatherBuffers.cs
-../referencesource/System/net/System/Net/_Semaphore.cs
 ../referencesource/System/net/System/Net/_ServiceNameStore.cs
 ../referencesource/System/net/System/Net/_TimerThread.cs
 ../referencesource/System/net/System/Net/_WebProxyDataBuilder.cs
@@ -824,7 +823,6 @@ ReferenceSources/Win32Exception.cs
 ../referencesource/System/sys/system/runtime/versioning/FrameworkName.cs
 
 ../referencesource/System/sys/system/threading/Barrier.cs
-../referencesource/System/sys/system/threading/semaphore.cs
 
 ../referencesource/System/sys/system/windows/markup/ValueSerializerAttribute.cs
 
@@ -856,6 +854,11 @@ ReferenceSources/Win32Exception.cs
 ../referencesource/System/compmod/system/codedom/compiler/GeneratedCodeAttribute.cs
 
 ../referencesource/System/compmod/microsoft/win32/safehandles/SafeProcessHandle.cs
+
+corert/SR.cs
+corert/Semaphore.cs
+
+../../../external/corert/src/System.Private.CoreLib/src/System/Threading/Semaphore.cs
 
 corefx/SR.cs
 

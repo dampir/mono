@@ -59,6 +59,8 @@ typedef void (*MonoThreadCleanupFunc) (MonoNativeThreadId tid);
 /* INFO has type MonoThreadInfo* */
 typedef void (*MonoThreadNotifyPendingExcFunc) (gpointer info);
 
+typedef void (*MonoThreadCleanupFunc2) (void);
+
 void
 mono_thread_callbacks_init (void);
 
@@ -178,6 +180,10 @@ void ves_icall_System_Threading_Volatile_Write_T (void *ptr, MonoObject *value);
 void ves_icall_System_Threading_Thread_MemoryBarrier (void);
 void ves_icall_System_Threading_Thread_Interrupt_internal (MonoThread *this_obj);
 void ves_icall_System_Threading_Thread_SpinWait_nop (void);
+
+MonoBoolean ves_icall_System_Runtime_RuntimeImports_SetThreadExitCallback (gpointer pCallback);
+void ves_icall_System_Runtime_RuntimeImports_SpinWait (int iterations);
+gboolean ves_icall_System_Runtime_RuntimeImports_Yield (void);
 
 void
 mono_threads_register_app_context (MonoAppContext* ctx, MonoError *error);
